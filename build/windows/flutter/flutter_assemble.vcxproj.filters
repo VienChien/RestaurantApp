@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="F:\Hoc\DemoFlutter\flutter\Restaurant_app\restaurant\build\windows\CMakeFiles\9cdc078efce698f0874d553f5f0cb415\flutter_windows.dll.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="F:\Hoc\DemoFlutter\flutter\Restaurant_app\restaurant\build\windows\CMakeFiles\7cd077bf3425c949b60f94af048ffbdd\flutter_assemble.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="F:\Hoc\DemoFlutter\flutter\Restaurant_app\restaurant\windows\flutter\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="F:\Hoc\DemoFlutter\flutter\Restaurant_app\restaurant\build\windows\flutter\CMakeFiles\flutter_assemble" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{7C3AC7CE-61CB-3CB9-88D7-6FD9805BBA4E}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
