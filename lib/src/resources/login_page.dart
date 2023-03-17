@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter_application/src/resources/register_page.dart';
-import 'package:flutter_application/src/resources/test.dart';
+import 'package:flutter_application/src/resources/home_page.dart';
 
 class LoginPage extends StatefulWidget {
   @override

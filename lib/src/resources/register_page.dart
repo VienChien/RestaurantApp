@@ -2,7 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter_application/src/bloc/auth_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application/src/resources/login_page.dart';
-import 'package:flutter_application/src/resources/test.dart';
+import 'package:flutter_application/src/resources/home_page.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
