@@ -494,7 +494,7 @@ class _HomePageState extends State<HomePage> {
                     padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
                     iconSize: 55,
                     icon: const Icon(
-                      Icons.restaurant_menu,
+                      Icons.restaurant,
                       color: Color.fromARGB(255, 129, 38, 38),
                     ),
                     onPressed: () {},
