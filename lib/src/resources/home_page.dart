@@ -20,7 +20,7 @@ class _HomePageState extends State<HomePage> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   SizedBox(
-                    width: double.infinity,
+                    width: double.maxFinite,
                     child: Image(
                       image: AssetImage("assets/images/homepage/appbar.png"),
                       fit: BoxFit.fill,
@@ -97,7 +97,7 @@ class _HomePageState extends State<HomePage> {
                                     const EdgeInsets.fromLTRB(30, 20, 30, 0),
                                 child: TextField(
                                   style: TextStyle(
-                                      fontSize: 18, color: Colors.white),
+                                      fontSize: 18, color: Colors.black),
                                   decoration: InputDecoration(
                                     prefixIcon: Container(
                                       width: 30,
