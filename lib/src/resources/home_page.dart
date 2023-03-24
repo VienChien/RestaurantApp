@@ -81,7 +81,7 @@ class _HomePageState extends State<HomePage> {
                     padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                     child: Container(
                       width: double.infinity,
-                      height: 500,
+                      height: 600,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.all(Radius.circular(30)),
                         color: Color.fromARGB(255, 247, 242, 236),
@@ -140,7 +140,7 @@ class _HomePageState extends State<HomePage> {
                                         child: Column(
                                           children: [
                                             SizedBox(
-                                              width: 180,
+                                              width: 140,
                                               child: Image(
                                                 image: AssetImage(
                                                     "assets/images/homepage/table.png"),
@@ -218,7 +218,7 @@ class _HomePageState extends State<HomePage> {
                                         child: Column(
                                           children: [
                                             SizedBox(
-                                              width: 180,
+                                              width: 140,
                                               child: Image(
                                                 image: AssetImage(
                                                     "assets/images/homepage/table.png"),
@@ -302,7 +302,7 @@ class _HomePageState extends State<HomePage> {
                                         child: Column(
                                           children: [
                                             SizedBox(
-                                              width: 180,
+                                              width: 140,
                                               child: Image(
                                                 image: AssetImage(
                                                     "assets/images/homepage/table.png"),
@@ -380,7 +380,7 @@ class _HomePageState extends State<HomePage> {
                                         child: Column(
                                           children: [
                                             SizedBox(
-                                              width: 180,
+                                              width: 140,
                                               child: Image(
                                                 image: AssetImage(
                                                     "assets/images/homepage/table.png"),
