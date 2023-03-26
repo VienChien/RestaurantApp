@@ -1,7 +1,6 @@
-import 'dart:html';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class TablePage extends StatefulWidget {
   const TablePage({super.key});
@@ -11,6 +10,7 @@ class TablePage extends StatefulWidget {
 }
 
 double _value = 20;
+int _window = 0;
 
 class _TablePageState extends State<TablePage> {
   @override
@@ -19,7 +19,7 @@ class _TablePageState extends State<TablePage> {
       home: Scaffold(
           body: Container(
             width: double.infinity,
-            height: 600,
+            height: 1900,
             color: Color.fromARGB(255, 247, 242, 236),
             child: SingleChildScrollView(
               child: Column(
@@ -34,10 +34,25 @@ class _TablePageState extends State<TablePage> {
                         child: SizedBox(
                           width: 160,
                           height: 150,
-                          child: Image(
-                            image:
-                                AssetImage("assets/images/homepage/table.png"),
-                            fit: BoxFit.cover,
+                          child: Container(
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.fromLTRB(48, 50, 30, 20),
+                              child: Text(
+                                "Bàn A",
+                                style: TextStyle(fontSize: 20),
+                              ),
+                            ),
+                            decoration: BoxDecoration(
+                                image: DecorationImage(
+                              image: AssetImage(
+                                  "assets/images/homepage/table.png"),
+                            )),
+                            // child: Image(
+                            //   image:
+                            //       AssetImage("assets/images/homepage/table.png"),
+                            //   fit: BoxFit.cover,
+                            // ),
                           ),
                         ),
                       ),
@@ -53,14 +68,9 @@ class _TablePageState extends State<TablePage> {
                           ),
                           child: Padding(
                             padding: const EdgeInsets.fromLTRB(0, 10, 80, 10),
-                            child: Container(
-                              decoration: new BoxDecoration(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(30)),
-                                  image: new DecorationImage(
-                                    image:
-                                        AssetImage("assets/images/avatar.jpg"),
-                                  )),
+                            child: CircleAvatar(
+                              backgroundImage:
+                                  AssetImage("assets/images/avatar.jpg"),
                             ),
                           ),
                         ),
@@ -83,14 +93,715 @@ class _TablePageState extends State<TablePage> {
                     value: _value,
                     activeColor: Color.fromARGB(255, 80, 78, 80),
                     inactiveColor: Color.fromARGB(255, 80, 78, 80),
-                    thumbColor: Color.fromARGB(255, 240, 134, 169),
+                    thumbColor: Color.fromARGB(255, 243, 113, 113),
                     onChanged: (value) {
                       setState(() {
                         _value = value;
                       });
                     },
                     divisions: 20,
-                    label: "20",
+                    label: "Bug",
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(15, 0, 0, 0),
+                    child: Text(
+                      "Loại Bàn",
+                      style: TextStyle(fontSize: 20),
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Row(
+                        children: [
+                          Radio(
+                            value: 1,
+                            groupValue: _window,
+                            onChanged: (Value) {},
+                          ),
+                          Text(
+                            "Gần cửa sổ",
+                            style: TextStyle(
+                                fontSize: 17,
+                                color: Color.fromARGB(199, 82, 77, 77)),
+                          )
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Radio(
+                            value: 1,
+                            groupValue: _window,
+                            onChanged: (Value) {},
+                          ),
+                          Text(
+                            "Ban công",
+                            style: TextStyle(
+                                fontSize: 17,
+                                color: Color.fromARGB(199, 82, 77, 77)),
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(35, 0, 38, 0),
+                        child: Row(
+                          children: [
+                            Radio(
+                              value: 1,
+                              groupValue: _window,
+                              onChanged: (Value) {},
+                            ),
+                            Text(
+                              "Gần quầy buffe",
+                              style: TextStyle(
+                                  fontSize: 17,
+                                  color: Color.fromARGB(199, 82, 77, 77)),
+                            )
+                          ],
+                        ),
+                      ),
+                      Row(
+                        children: [
+                          Radio(
+                            value: 1,
+                            groupValue: _window,
+                            onChanged: (Value) {},
+                          ),
+                          Text(
+                            "Ngay giữa",
+                            style: TextStyle(
+                                fontSize: 17,
+                                color: Color.fromARGB(199, 82, 77, 77)),
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(15, 0, 0, 0),
+                    child: Text(
+                      "Thức Ăn Chính",
+                      style: TextStyle(fontSize: 20),
+                    ),
+                  ),
+                  new Container(
+                    height: 280,
+                    width: double.infinity,
+                    child: new ListView(
+                      scrollDirection: Axis.horizontal,
+                      children: <Widget>[
+                        Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Container(
+                                      width: 140,
+                                      height: 180,
+                                      decoration: BoxDecoration(
+                                        borderRadius:
+                                            new BorderRadius.circular(12),
+                                        color: Colors.transparent,
+                                        border: Border.all(
+                                          width: 1,
+                                        ),
+                                      ),
+                                      child: Image.asset(
+                                        "assets/images/detail/food/laurieucua.png",
+                                        fit: BoxFit.contain,
+                                      )),
+                                  Text(
+                                    "250.000 VNĐ",
+                                    style: TextStyle(
+                                        fontSize: 15, color: Colors.red),
+                                  ),
+                                  Text(
+                                    "Lẩu Riêu Cua",
+                                    style: TextStyle(fontSize: 20),
+                                  ),
+                                  SizedBox(
+                                    width: 130,
+                                    height: 30,
+                                    child: ElevatedButton(
+                                      onPressed: () {},
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor:
+                                            Color.fromARGB(255, 219, 82, 82),
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(10)),
+                                        ),
+                                      ),
+                                      child: Row(
+                                        children: [
+                                          Icon(
+                                            Icons.library_add_outlined,
+                                            size: 19,
+                                          ),
+                                          Text(
+                                            "Thêm vào bàn",
+                                            style: TextStyle(fontSize: 12),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Container(
+                                      width: 140,
+                                      height: 180,
+                                      decoration: BoxDecoration(
+                                        borderRadius:
+                                            new BorderRadius.circular(12),
+                                        color: Colors.transparent,
+                                        border: Border.all(
+                                          width: 1,
+                                        ),
+                                      ),
+                                      child: Image.asset(
+                                        "assets/images/detail/food/lauthai.png",
+                                        fit: BoxFit.contain,
+                                      )),
+                                  Text(
+                                    "250.000 VNĐ",
+                                    style: TextStyle(
+                                        fontSize: 15, color: Colors.red),
+                                  ),
+                                  Text(
+                                    "Lẩu Thái",
+                                    style: TextStyle(fontSize: 20),
+                                  ),
+                                  SizedBox(
+                                    width: 130,
+                                    height: 30,
+                                    child: ElevatedButton(
+                                      onPressed: () {},
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor:
+                                            Color.fromARGB(255, 219, 82, 82),
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(10)),
+                                        ),
+                                      ),
+                                      child: Row(
+                                        children: [
+                                          Icon(
+                                            Icons.library_add_outlined,
+                                            size: 19,
+                                          ),
+                                          Text(
+                                            "Thêm vào bàn",
+                                            style: TextStyle(fontSize: 12),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Container(
+                                      width: 140,
+                                      height: 180,
+                                      decoration: BoxDecoration(
+                                        borderRadius:
+                                            new BorderRadius.circular(12),
+                                        color: Colors.transparent,
+                                        border: Border.all(
+                                          width: 1,
+                                        ),
+                                      ),
+                                      child: Image.asset(
+                                        "assets/images/detail/food/laubo.png",
+                                        fit: BoxFit.contain,
+                                      )),
+                                  Text(
+                                    "250.000 VNĐ",
+                                    style: TextStyle(
+                                        fontSize: 15, color: Colors.red),
+                                  ),
+                                  Text(
+                                    "Lẩu Bò",
+                                    style: TextStyle(fontSize: 20),
+                                  ),
+                                  SizedBox(
+                                    width: 130,
+                                    height: 30,
+                                    child: ElevatedButton(
+                                      onPressed: () {},
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor:
+                                            Color.fromARGB(255, 219, 82, 82),
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(10)),
+                                        ),
+                                      ),
+                                      child: Row(
+                                        children: [
+                                          Icon(
+                                            Icons.library_add_outlined,
+                                            size: 19,
+                                          ),
+                                          Text(
+                                            "Thêm vào bàn",
+                                            style: TextStyle(fontSize: 12),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(15, 0, 0, 0),
+                    child: Text(
+                      "Nước Uống",
+                      style: TextStyle(fontSize: 20),
+                    ),
+                  ),
+                  new Container(
+                    height: 280,
+                    width: double.infinity,
+                    child: new ListView(
+                      scrollDirection: Axis.horizontal,
+                      children: <Widget>[
+                        Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Container(
+                                      width: 140,
+                                      height: 180,
+                                      decoration: BoxDecoration(
+                                        borderRadius:
+                                            new BorderRadius.circular(12),
+                                        color: Colors.transparent,
+                                        border: Border.all(
+                                          width: 1,
+                                        ),
+                                      ),
+                                      child: Image.asset(
+                                        "assets/images/detail/drink/coca.png",
+                                        fit: BoxFit.contain,
+                                      )),
+                                  Text(
+                                    "49.000 VNĐ",
+                                    style: TextStyle(
+                                        fontSize: 15, color: Colors.red),
+                                  ),
+                                  Text(
+                                    "CoCa Cola",
+                                    style: TextStyle(fontSize: 20),
+                                  ),
+                                  SizedBox(
+                                    width: 130,
+                                    height: 30,
+                                    child: ElevatedButton(
+                                      onPressed: () {},
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor:
+                                            Color.fromARGB(255, 219, 82, 82),
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(10)),
+                                        ),
+                                      ),
+                                      child: Row(
+                                        children: [
+                                          Icon(
+                                            Icons.library_add_outlined,
+                                            size: 19,
+                                          ),
+                                          Text(
+                                            "Thêm vào bàn",
+                                            style: TextStyle(fontSize: 12),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Container(
+                                      width: 140,
+                                      height: 180,
+                                      decoration: BoxDecoration(
+                                        borderRadius:
+                                            new BorderRadius.circular(12),
+                                        color: Colors.transparent,
+                                        border: Border.all(
+                                          width: 1,
+                                        ),
+                                      ),
+                                      child: Image.asset(
+                                        "assets/images/detail/drink/cocktail.png",
+                                        fit: BoxFit.contain,
+                                      )),
+                                  Text(
+                                    "79.000 VNĐ",
+                                    style: TextStyle(
+                                        fontSize: 15, color: Colors.red),
+                                  ),
+                                  Text(
+                                    "CockTail",
+                                    style: TextStyle(fontSize: 20),
+                                  ),
+                                  SizedBox(
+                                    width: 130,
+                                    height: 30,
+                                    child: ElevatedButton(
+                                      onPressed: () {},
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor:
+                                            Color.fromARGB(255, 219, 82, 82),
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(10)),
+                                        ),
+                                      ),
+                                      child: Row(
+                                        children: [
+                                          Icon(
+                                            Icons.library_add_outlined,
+                                            size: 19,
+                                          ),
+                                          Text(
+                                            "Thêm vào bàn",
+                                            style: TextStyle(fontSize: 12),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Container(
+                                      width: 140,
+                                      height: 180,
+                                      decoration: BoxDecoration(
+                                        borderRadius:
+                                            new BorderRadius.circular(12),
+                                        color: Colors.transparent,
+                                        border: Border.all(
+                                          width: 1,
+                                        ),
+                                      ),
+                                      child: Image.asset(
+                                        "assets/images/detail/drink/beer.png",
+                                        fit: BoxFit.contain,
+                                      )),
+                                  Text(
+                                    "49.000 VNĐ",
+                                    style: TextStyle(
+                                        fontSize: 15, color: Colors.red),
+                                  ),
+                                  Text(
+                                    "Bia",
+                                    style: TextStyle(fontSize: 20),
+                                  ),
+                                  SizedBox(
+                                    width: 130,
+                                    height: 30,
+                                    child: ElevatedButton(
+                                      onPressed: () {},
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor:
+                                            Color.fromARGB(255, 219, 82, 82),
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(10)),
+                                        ),
+                                      ),
+                                      child: Row(
+                                        children: [
+                                          Icon(
+                                            Icons.library_add_outlined,
+                                            size: 19,
+                                          ),
+                                          Text(
+                                            "Thêm vào bàn",
+                                            style: TextStyle(fontSize: 12),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(15, 0, 0, 0),
+                    child: Text(
+                      "Món Tráng Miệng",
+                      style: TextStyle(fontSize: 20),
+                    ),
+                  ),
+                  new Container(
+                    height: 280,
+                    width: double.infinity,
+                    child: new ListView(
+                      scrollDirection: Axis.horizontal,
+                      children: <Widget>[
+                        Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Container(
+                                      width: 140,
+                                      height: 180,
+                                      decoration: BoxDecoration(
+                                        borderRadius:
+                                            new BorderRadius.circular(12),
+                                        color: Colors.transparent,
+                                        border: Border.all(
+                                          width: 1,
+                                        ),
+                                      ),
+                                      child: Image.asset(
+                                        "assets/images/detail/dessert/kem.png",
+                                        fit: BoxFit.contain,
+                                      )),
+                                  Text(
+                                    "79.000 VNĐ",
+                                    style: TextStyle(
+                                        fontSize: 15, color: Colors.red),
+                                  ),
+                                  Text(
+                                    "Tiramisu",
+                                    style: TextStyle(fontSize: 20),
+                                  ),
+                                  SizedBox(
+                                    width: 130,
+                                    height: 30,
+                                    child: ElevatedButton(
+                                      onPressed: () {},
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor:
+                                            Color.fromARGB(255, 219, 82, 82),
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(10)),
+                                        ),
+                                      ),
+                                      child: Row(
+                                        children: [
+                                          Icon(
+                                            Icons.library_add_outlined,
+                                            size: 19,
+                                          ),
+                                          Text(
+                                            "Thêm vào bàn",
+                                            style: TextStyle(fontSize: 12),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Container(
+                                      width: 140,
+                                      height: 180,
+                                      decoration: BoxDecoration(
+                                        borderRadius:
+                                            new BorderRadius.circular(12),
+                                        color: Colors.transparent,
+                                        border: Border.all(
+                                          width: 1,
+                                        ),
+                                      ),
+                                      child: Image.asset(
+                                        "assets/images/detail/dessert/flan.png",
+                                        fit: BoxFit.contain,
+                                      )),
+                                  Text(
+                                    "69.000 VNĐ",
+                                    style: TextStyle(
+                                        fontSize: 15, color: Colors.red),
+                                  ),
+                                  Text(
+                                    "Bánh Flan",
+                                    style: TextStyle(fontSize: 20),
+                                  ),
+                                  SizedBox(
+                                    width: 130,
+                                    height: 30,
+                                    child: ElevatedButton(
+                                      onPressed: () {},
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor:
+                                            Color.fromARGB(255, 219, 82, 82),
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(10)),
+                                        ),
+                                      ),
+                                      child: Row(
+                                        children: [
+                                          Icon(
+                                            Icons.library_add_outlined,
+                                            size: 19,
+                                          ),
+                                          Text(
+                                            "Thêm vào bàn",
+                                            style: TextStyle(fontSize: 12),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Container(
+                                      width: 140,
+                                      height: 180,
+                                      decoration: BoxDecoration(
+                                        borderRadius:
+                                            new BorderRadius.circular(12),
+                                        color: Colors.transparent,
+                                        border: Border.all(
+                                          width: 1,
+                                        ),
+                                      ),
+                                      child: Image.asset(
+                                        "assets/images/detail/dessert/sweat.png",
+                                        fit: BoxFit.contain,
+                                      )),
+                                  Text(
+                                    "89.000 VNĐ",
+                                    style: TextStyle(
+                                        fontSize: 15, color: Colors.red),
+                                  ),
+                                  Text(
+                                    "Bánh",
+                                    style: TextStyle(fontSize: 20),
+                                  ),
+                                  SizedBox(
+                                    width: 130,
+                                    height: 30,
+                                    child: ElevatedButton(
+                                      onPressed: () {},
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor:
+                                            Color.fromARGB(255, 219, 82, 82),
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(10)),
+                                        ),
+                                      ),
+                                      child: Row(
+                                        children: [
+                                          Icon(
+                                            Icons.library_add_outlined,
+                                            size: 19,
+                                          ),
+                                          Text(
+                                            "Thêm vào bàn",
+                                            style: TextStyle(fontSize: 12),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 10, 0, 20),
+                    child: Center(
+                      child: SizedBox(
+                        width: 250,
+                        height: 50,
+                        child: ElevatedButton(
+                            onPressed: () {},
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Color.fromARGB(255, 219, 82, 82),
+                              shape: RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(30)),
+                              ),
+                            ),
+                            child: Text(
+                              "Đặt món",
+                              style: TextStyle(fontSize: 25),
+                            )),
+                      ),
+                    ),
                   )
                 ],
               ),
