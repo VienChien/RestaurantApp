@@ -65,7 +65,9 @@ flutter:
   assets:
     - assets/images/
     - assets/images/homepage/
-
+    - assets/images/detail/drink/
+    - assets/images/detail/food/
+    - assets/images/detail/dessert/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 
