@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application/src/resources/table_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -487,7 +488,10 @@ class _HomePageState extends State<HomePage> {
                       Icons.home,
                       color: Color.fromARGB(255, 129, 38, 38),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => HomePage()));
+                    },
                   ),
                   IconButton(
                     alignment: Alignment.center,
@@ -497,14 +501,17 @@ class _HomePageState extends State<HomePage> {
                       Icons.restaurant_menu_rounded,
                       color: Color.fromARGB(255, 129, 38, 38),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => TablePage()));
+                    },
                   ),
                   IconButton(
                     alignment: Alignment.center,
                     padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
                     iconSize: 60,
                     icon: const Icon(
-                      Icons.favorite_border,
+                      Icons.card_giftcard,
                       color: Color.fromARGB(255, 129, 38, 38),
                     ),
                     onPressed: () {},
