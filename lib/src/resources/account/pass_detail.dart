@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application/src/resources/account/pass_manager.dart';
-import 'package:flutter_application/src/resources/pass_manager.dart';
 
 class Pass_detail extends StatefulWidget {
   const Pass_detail({super.key});

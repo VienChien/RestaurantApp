@@ -17,14 +17,12 @@ class _mainSupportState extends State<mainSupport> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-<<<<<<< Updated upstream
               SizedBox(
                 child: Image(
                   image: AssetImage("assets/images/homepage/avatar.png"),
                   fit: BoxFit.fill,
                 ),
               ),
-=======
               Container(
                 padding: EdgeInsets.fromLTRB(80, 40, 0, 0),
                 width: 300,
@@ -76,8 +74,7 @@ class _mainSupportState extends State<mainSupport> {
                     ),
                   ],
                 ),
-              )
->>>>>>> Stashed changes
+              ),
             ],
           ),
         ),
