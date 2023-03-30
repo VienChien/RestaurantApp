@@ -1,7 +1,15 @@
+<<<<<<< Updated upstream
+<<<<<<<< Updated upstream:lib/src/resources/table_page/table_page.dart
+=======
+>>>>>>> Stashed changes
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+<<<<<<< Updated upstream
+=======
+import '../home_page.dart';
+>>>>>>> Stashed changes
 import 'home_page.dart';
 
 class TablePage extends StatefulWidget {
@@ -882,3 +890,9 @@ class _TablePageState extends State<TablePage> {
 //     );
 //   }
 // }
+<<<<<<< Updated upstream
+========
+// TODO Implement this library.
+>>>>>>>> Stashed changes:lib/src/resources/table_page.dart
+=======
+>>>>>>> Stashed changes

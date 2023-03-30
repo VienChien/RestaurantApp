@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application/src/resources/table_page.dart';
+<<<<<<< Updated upstream
+=======
+import 'package:flutter_application/src/resources/table_page/table_page.dart';
+>>>>>>> Stashed changes
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
