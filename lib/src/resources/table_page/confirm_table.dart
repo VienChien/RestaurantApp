@@ -3,25 +3,29 @@ import 'package:flutter_application/src/resources/table_page/table_page.dart';
 
 import '../home_page.dart';
 
-class Confirm extends StatefulWidget {
-  const Confirm({super.key});
+class ConfirmTable extends StatefulWidget {
+  const ConfirmTable({super.key});
 
   @override
-  _ConfirmState createState() => _ConfirmState();
+  _ConfirmTableState createState() => _ConfirmTableState();
 }
 
-class _ConfirmState extends State<Confirm> {
+class _ConfirmTableState extends State<ConfirmTable> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-          body: SingleChildScrollView(
+        body: Container(
+          width: double.infinity,
+          height: 900,
+          color: Color.fromARGB(255, 247, 242, 236),
+          child: SingleChildScrollView(
             child: Column(
               children: [
                 Row(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+                      padding: const EdgeInsets.fromLTRB(20, 40, 20, 0),
                       child: Container(
                         width: 170,
                         height: 300,
@@ -232,7 +236,10 @@ class _ConfirmState extends State<Confirm> {
                   width: 300,
                   height: 60,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => HomePage()));
+                    },
                     child: Text(
                       "Thanh Toán",
                       style: TextStyle(color: Colors.white, fontSize: 30),
@@ -248,59 +255,8 @@ class _ConfirmState extends State<Confirm> {
               ],
             ),
           ),
-          bottomNavigationBar: BottomAppBar(
-              height: 60,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  IconButton(
-                    alignment: Alignment.center,
-                    padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                    iconSize: 60,
-                    icon: const Icon(
-                      Icons.home,
-                      color: Color.fromARGB(255, 129, 38, 38),
-                    ),
-                    onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => HomePage()));
-                    },
-                  ),
-                  IconButton(
-                    alignment: Alignment.center,
-                    padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                    iconSize: 55,
-                    icon: const Icon(
-                      Icons.restaurant_menu_rounded,
-                      color: Color.fromARGB(255, 129, 38, 38),
-                    ),
-                    onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => TablePage()));
-                    },
-                  ),
-                  IconButton(
-                    alignment: Alignment.center,
-                    padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                    iconSize: 60,
-                    icon: const Icon(
-                      Icons.card_giftcard,
-                      color: Color.fromARGB(255, 129, 38, 38),
-                    ),
-                    onPressed: () {},
-                  ),
-                  IconButton(
-                    alignment: Alignment.center,
-                    padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                    iconSize: 60,
-                    icon: const Icon(
-                      Icons.person,
-                      color: Color.fromARGB(255, 129, 38, 38),
-                    ),
-                    onPressed: () {},
-                  ),
-                ],
-              ))),
+        ),
+      ),
     );
   }
 }

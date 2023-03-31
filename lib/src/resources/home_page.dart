@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application/src/resources/account/account_page.dart';
+import 'package:flutter_application/src/resources/history_page.dart';
 import 'package:flutter_application/src/resources/table_page/table_page.dart';
+import 'package:flutter_application/src/resources/voucher_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -141,13 +144,21 @@ class _HomePageState extends State<HomePage> {
                                         child: Column(
                                           children: [
                                             SizedBox(
-                                              width: 140,
-                                              child: Image(
-                                                image: AssetImage(
-                                                    "assets/images/homepage/table.png"),
-                                                fit: BoxFit.cover,
-                                              ),
-                                            ),
+                                                width: 140,
+                                                child: GestureDetector(
+                                                  child: Image(
+                                                    image: AssetImage(
+                                                        "assets/images/homepage/table.png"),
+                                                    fit: BoxFit.cover,
+                                                  ),
+                                                  onTap: () {
+                                                    Navigator.push(
+                                                        context,
+                                                        MaterialPageRoute(
+                                                            builder: (context) =>
+                                                                TablePage()));
+                                                  },
+                                                )),
                                             Padding(
                                               padding:
                                                   const EdgeInsets.fromLTRB(
@@ -476,55 +487,81 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           bottomNavigationBar: BottomAppBar(
-              height: 60,
+              height: 50,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  IconButton(
-                    alignment: Alignment.center,
-                    padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                    iconSize: 60,
-                    icon: const Icon(
-                      Icons.home,
-                      color: Color.fromARGB(255, 129, 38, 38),
+                  SizedBox(
+                    width: 50,
+                    height: 50,
+                    child: IconButton(
+                      alignment: Alignment.center,
+                      padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                      iconSize: 55,
+                      icon: const Icon(
+                        Icons.home,
+                        color: Color.fromARGB(255, 129, 38, 38),
+                      ),
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => HomePage()));
+                      },
                     ),
-                    onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => HomePage()));
-                    },
                   ),
-                  IconButton(
-                    alignment: Alignment.center,
-                    padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                    iconSize: 55,
-                    icon: const Icon(
-                      Icons.restaurant_menu_rounded,
-                      color: Color.fromARGB(255, 129, 38, 38),
+                  SizedBox(
+                    width: 50,
+                    height: 50,
+                    child: IconButton(
+                      alignment: Alignment.center,
+                      padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                      iconSize: 55,
+                      icon: const Icon(
+                        Icons.restaurant_menu_rounded,
+                        color: Color.fromARGB(255, 129, 38, 38),
+                      ),
+                      onPressed: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => History()));
+                      },
                     ),
-                    onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => TablePage()));
-                    },
                   ),
-                  IconButton(
-                    alignment: Alignment.center,
-                    padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                    iconSize: 60,
-                    icon: const Icon(
-                      Icons.card_giftcard,
-                      color: Color.fromARGB(255, 129, 38, 38),
+                  SizedBox(
+                    width: 50,
+                    height: 50,
+                    child: IconButton(
+                      alignment: Alignment.center,
+                      padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                      iconSize: 55,
+                      icon: const Icon(
+                        Icons.card_giftcard,
+                        color: Color.fromARGB(255, 129, 38, 38),
+                      ),
+                      onPressed: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => Voucher()));
+                      },
                     ),
-                    onPressed: () {},
                   ),
-                  IconButton(
-                    alignment: Alignment.center,
-                    padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                    iconSize: 60,
-                    icon: const Icon(
-                      Icons.person,
-                      color: Color.fromARGB(255, 129, 38, 38),
+                  SizedBox(
+                    width: 50,
+                    height: 50,
+                    child: IconButton(
+                      alignment: Alignment.center,
+                      padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                      iconSize: 55,
+                      icon: const Icon(
+                        Icons.person,
+                        color: Color.fromARGB(255, 129, 38, 38),
+                      ),
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Account_Page()));
+                      },
                     ),
-                    onPressed: () {},
                   ),
                 ],
               ))),

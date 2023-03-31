@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application/src/resources/account/main_support.dart';
+import 'package:flutter_application/src/resources/account/account_page.dart';
 import 'package:flutter_application/src/resources/home_page.dart';
 import 'package:flutter_application/src/resources/history_page.dart';
+import 'package:flutter_application/src/resources/login_page.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -10,7 +11,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: mainSupport(),
+      home: LoginPage(),
     );
   }
 }

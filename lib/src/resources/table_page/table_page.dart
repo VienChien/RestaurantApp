@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application/src/resources/home_page.dart';
+import 'package:flutter_application/src/resources/table_page/confirm_table.dart';
 
 class TablePage extends StatefulWidget {
   const TablePage({super.key});
@@ -789,7 +790,12 @@ class _TablePageState extends State<TablePage> {
                         width: 250,
                         height: 50,
                         child: ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => ConfirmTable()));
+                            },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Color.fromARGB(255, 219, 82, 82),
                               shape: RoundedRectangleBorder(
