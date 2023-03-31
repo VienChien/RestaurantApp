@@ -12,71 +12,119 @@ class _mainSupportState extends State<mainSupport> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        body: Container(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              SizedBox(
-                child: Image(
-                  image: AssetImage("assets/images/homepage/avatar.png"),
-                  fit: BoxFit.fill,
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 40, 0, 0),
+                  child: Container(
+                    width: 230,
+                    height: 230,
+                    child: CircleAvatar(
+                      backgroundImage: AssetImage("assets/images/avatar.jpg"),
+                    ),
+                  ),
                 ),
+              ],
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(0, 15, 0, 0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "Ôn Tăng Gia Khánh",
+                    style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                  )
+                ],
               ),
-              Container(
-                padding: EdgeInsets.fromLTRB(80, 40, 0, 0),
-                width: 300,
-                height: 300,
-                child: CircleAvatar(
-                  backgroundImage: AssetImage("assets/images/avatar.jpg"),
-                ),
-              ),
-              Container(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    ElevatedButton.icon(
+            ),
+            Container(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(30, 20, 20, 0),
+                    child: TextButton.icon(
                       onPressed: () {},
                       icon: Icon(Icons.account_circle),
                       label: Text("Quản lý tài khoản"),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
-                      child: ElevatedButton.icon(
-                        onPressed: () {},
-                        icon: Icon(Icons.lock),
-                        label: Text("Quản lý mật khẩu"),
+                      style: TextButton.styleFrom(
+                        foregroundColor: Colors.black,
+                        textStyle: const TextStyle(
+                          fontSize: 25,
+                          decoration: TextDecoration.underline,
+                        ),
                       ),
                     ),
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
-                      child: ElevatedButton.icon(
-                        onPressed: () {},
-                        icon: Icon(Icons.account_balance),
-                        label: Text("Liên kết ngân hàng"),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(30, 5, 20, 0),
+                    child: TextButton.icon(
+                      onPressed: () {},
+                      icon: Icon(Icons.lock),
+                      label: Text("Quản lý mật khẩu"),
+                      style: TextButton.styleFrom(
+                        foregroundColor: Colors.black,
+                        textStyle: const TextStyle(
+                          fontSize: 25,
+                          decoration: TextDecoration.underline,
+                        ),
                       ),
                     ),
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
-                      child: ElevatedButton.icon(
-                        onPressed: () {},
-                        icon: Icon(Icons.support_agent),
-                        label: Text("Liên hệ hỗ trợ"),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(30, 5, 20, 0),
+                    child: TextButton.icon(
+                      onPressed: () {},
+                      icon: Icon(Icons.account_balance),
+                      label: Text("Liên kết ngân hàng"),
+                      style: TextButton.styleFrom(
+                        foregroundColor: Colors.black,
+                        textStyle: const TextStyle(
+                          fontSize: 25,
+                          decoration: TextDecoration.underline,
+                        ),
                       ),
                     ),
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
-                      child: ElevatedButton.icon(
-                        onPressed: () {},
-                        icon: Icon(Icons.settings),
-                        label: Text("Cài đặt"),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(30, 5, 20, 0),
+                    child: TextButton.icon(
+                      onPressed: () {},
+                      icon: Icon(Icons.support_agent),
+                      label: Text("Liên hệ hỗ trợ"),
+                      style: TextButton.styleFrom(
+                        foregroundColor: Colors.black,
+                        textStyle: const TextStyle(
+                          fontSize: 25,
+                          decoration: TextDecoration.underline,
+                        ),
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(30, 5, 20, 0),
+                    child: TextButton.icon(
+                      onPressed: () {},
+                      icon: Icon(Icons.logout),
+                      label: Text("Đăng xuất"),
+                      style: TextButton.styleFrom(
+                        foregroundColor: Colors.black,
+                        textStyle: const TextStyle(
+                          fontSize: 25,
+                          decoration: TextDecoration.underline,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
