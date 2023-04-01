@@ -112,7 +112,7 @@ class _TablePageState extends State<TablePage> {
                     ),
                   ),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Row(
                         children: [
@@ -147,6 +147,7 @@ class _TablePageState extends State<TablePage> {
                     ],
                   ),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Padding(
                         padding: const EdgeInsets.fromLTRB(35, 0, 38, 0),

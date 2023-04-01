@@ -41,7 +41,7 @@ class _HomePageState extends State<HomePage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.fromLTRB(15, 0, 0, 0),
+                        padding: const EdgeInsets.fromLTRB(15, 0, 0, 10),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -50,44 +50,46 @@ class _HomePageState extends State<HomePage> {
                               style: TextStyle(fontSize: 23),
                             ),
                             Text(
-                              "  Trần Văn A",
+                              "  Trần Viên Chiến",
                               style: TextStyle(fontSize: 23),
                             ),
                             Text(
-                              "  0925316482",
+                              "  0925321321",
                               style: TextStyle(fontSize: 23),
                             ),
                           ],
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                        child: Container(
-                          width: 150,
-                          height: 60,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(30)),
-                            color: Color.fromARGB(255, 236, 81, 81),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.fromLTRB(0, 10, 80, 10),
-                            child: Image(
-                              image: AssetImage(
-                                  "assets/images/homepage/favourite.png"),
-                              fit: BoxFit.contain,
-                            ),
+                      padding: const EdgeInsets.fromLTRB(0, 0, 0, 40),
+                      child: Container(
+                        width: 100,
+                        height: 60,
+                        decoration: BoxDecoration(
+                          borderRadius: new BorderRadius.horizontal(
+                              left: Radius.circular(30)),
+                          color: Color.fromARGB(255, 243, 113, 113),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(0, 10, 30, 10),
+                          child: CircleAvatar(
+                            backgroundImage:
+                                AssetImage("assets/images/avatar.jpg"),
                           ),
                         ),
-                      )
+                      ),
+                    ),
                     ],
                   ),
                   Padding(
                     padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                     child: Container(
                       width: double.infinity,
-                      height: 600,
+                      height: 950,
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(30)),
+                        borderRadius: BorderRadius.vertical(
+                          top: Radius.circular(30)
+                        ),
                         color: Color.fromARGB(255, 247, 242, 236),
                       ),
                       child: Padding(
@@ -223,20 +225,29 @@ class _HomePageState extends State<HomePage> {
                                           ],
                                         ),
                                       ),
+                                      
                                       // Bàn 2
-                                      Padding(
+                                        Padding(
                                         padding: const EdgeInsets.fromLTRB(
-                                            0, 20, 0, 20),
+                                            20, 20, 0, 20),
                                         child: Column(
                                           children: [
                                             SizedBox(
-                                              width: 140,
-                                              child: Image(
-                                                image: AssetImage(
-                                                    "assets/images/homepage/table.png"),
-                                                fit: BoxFit.cover,
-                                              ),
-                                            ),
+                                                width: 140,
+                                                child: GestureDetector(
+                                                  child: Image(
+                                                    image: AssetImage(
+                                                        "assets/images/homepage/table.png"),
+                                                    fit: BoxFit.cover,
+                                                  ),
+                                                  onTap: () {
+                                                    Navigator.push(
+                                                        context,
+                                                        MaterialPageRoute(
+                                                            builder: (context) =>
+                                                                TablePage()));
+                                                  },
+                                                )),
                                             Padding(
                                               padding:
                                                   const EdgeInsets.fromLTRB(
@@ -301,6 +312,7 @@ class _HomePageState extends State<HomePage> {
                                           ],
                                         ),
                                       ),
+                                      
                                     ],
                                   ),
                                   Row(
@@ -308,19 +320,27 @@ class _HomePageState extends State<HomePage> {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       // Bàn 3
-                                      Padding(
+                                       Padding(
                                         padding: const EdgeInsets.fromLTRB(
                                             20, 20, 0, 20),
                                         child: Column(
                                           children: [
                                             SizedBox(
-                                              width: 140,
-                                              child: Image(
-                                                image: AssetImage(
-                                                    "assets/images/homepage/table.png"),
-                                                fit: BoxFit.cover,
-                                              ),
-                                            ),
+                                                width: 140,
+                                                child: GestureDetector(
+                                                  child: Image(
+                                                    image: AssetImage(
+                                                        "assets/images/homepage/table.png"),
+                                                    fit: BoxFit.cover,
+                                                  ),
+                                                  onTap: () {
+                                                    Navigator.push(
+                                                        context,
+                                                        MaterialPageRoute(
+                                                            builder: (context) =>
+                                                                TablePage()));
+                                                  },
+                                                )),
                                             Padding(
                                               padding:
                                                   const EdgeInsets.fromLTRB(
@@ -385,20 +405,29 @@ class _HomePageState extends State<HomePage> {
                                           ],
                                         ),
                                       ),
+                                      
                                       // Bàn 4
-                                      Padding(
+                                       Padding(
                                         padding: const EdgeInsets.fromLTRB(
-                                            0, 20, 0, 20),
+                                            20, 20, 0, 20),
                                         child: Column(
                                           children: [
                                             SizedBox(
-                                              width: 140,
-                                              child: Image(
-                                                image: AssetImage(
-                                                    "assets/images/homepage/table.png"),
-                                                fit: BoxFit.cover,
-                                              ),
-                                            ),
+                                                width: 140,
+                                                child: GestureDetector(
+                                                  child: Image(
+                                                    image: AssetImage(
+                                                        "assets/images/homepage/table.png"),
+                                                    fit: BoxFit.cover,
+                                                  ),
+                                                  onTap: () {
+                                                    Navigator.push(
+                                                        context,
+                                                        MaterialPageRoute(
+                                                            builder: (context) =>
+                                                                TablePage()));
+                                                  },
+                                                )),
                                             Padding(
                                               padding:
                                                   const EdgeInsets.fromLTRB(
@@ -463,7 +492,365 @@ class _HomePageState extends State<HomePage> {
                                           ],
                                         ),
                                       ),
-                                    ],
+                                      ],
+                                  ),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      // Bàn 5
+                                       Padding(
+                                        padding: const EdgeInsets.fromLTRB(
+                                            20, 20, 0, 20),
+                                        child: Column(
+                                          children: [
+                                            SizedBox(
+                                                width: 140,
+                                                child: GestureDetector(
+                                                  child: Image(
+                                                    image: AssetImage(
+                                                        "assets/images/homepage/table.png"),
+                                                    fit: BoxFit.cover,
+                                                  ),
+                                                  onTap: () {
+                                                    Navigator.push(
+                                                        context,
+                                                        MaterialPageRoute(
+                                                            builder: (context) =>
+                                                                TablePage()));
+                                                  },
+                                                )),
+                                            Padding(
+                                              padding:
+                                                  const EdgeInsets.fromLTRB(
+                                                      0, 0, 20, 0),
+                                              child: Container(
+                                                  width: 150,
+                                                  height: 30,
+                                                  decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.all(
+                                                            Radius.circular(
+                                                                30)),
+                                                    color: Color.fromARGB(
+                                                        255, 221, 163, 163),
+                                                  ),
+                                                  child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                    .fromLTRB(
+                                                                15, 0, 0, 0),
+                                                        child: Text(
+                                                          "Bàn 5",
+                                                          style: TextStyle(
+                                                              fontSize: 15),
+                                                        ),
+                                                      ),
+                                                      Icon(
+                                                        Icons.groups,
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                    .fromLTRB(
+                                                                0, 0, 15, 0),
+                                                        child: Container(
+                                                          width: 10,
+                                                          height: 10,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .all(Radius
+                                                                        .circular(
+                                                                            30)),
+                                                            color:
+                                                                Color.fromARGB(
+                                                                    255,
+                                                                    10,
+                                                                    255,
+                                                                    10),
+                                                          ),
+                                                        ),
+                                                      )
+                                                    ],
+                                                  )),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                      
+                                      // Bàn 6
+                                       Padding(
+                                        padding: const EdgeInsets.fromLTRB(
+                                            20, 20, 0, 20),
+                                        child: Column(
+                                          children: [
+                                            SizedBox(
+                                                width: 140,
+                                                child: GestureDetector(
+                                                  child: Image(
+                                                    image: AssetImage(
+                                                        "assets/images/homepage/table.png"),
+                                                    fit: BoxFit.cover,
+                                                  ),
+                                                  onTap: () {
+                                                    Navigator.push(
+                                                        context,
+                                                        MaterialPageRoute(
+                                                            builder: (context) =>
+                                                                TablePage()));
+                                                  },
+                                                )),
+                                            Padding(
+                                              padding:
+                                                  const EdgeInsets.fromLTRB(
+                                                      0, 0, 20, 0),
+                                              child: Container(
+                                                  width: 150,
+                                                  height: 30,
+                                                  decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.all(
+                                                            Radius.circular(
+                                                                30)),
+                                                    color: Color.fromARGB(
+                                                        255, 221, 163, 163),
+                                                  ),
+                                                  child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                    .fromLTRB(
+                                                                15, 0, 0, 0),
+                                                        child: Text(
+                                                          "Bàn 6",
+                                                          style: TextStyle(
+                                                              fontSize: 15),
+                                                        ),
+                                                      ),
+                                                      Icon(
+                                                        Icons.groups,
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                    .fromLTRB(
+                                                                0, 0, 15, 0),
+                                                        child: Container(
+                                                          width: 10,
+                                                          height: 10,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .all(Radius
+                                                                        .circular(
+                                                                            30)),
+                                                            color:
+                                                                Color.fromARGB(
+                                                                    255,
+                                                                    10,
+                                                                    255,
+                                                                    10),
+                                                          ),
+                                                        ),
+                                                      )
+                                                    ],
+                                                  )),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                      ],
+                                  ),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      // Bàn 7
+                                       Padding(
+                                        padding: const EdgeInsets.fromLTRB(
+                                            20, 20, 0, 20),
+                                        child: Column(
+                                          children: [
+                                            SizedBox(
+                                                width: 140,
+                                                child: GestureDetector(
+                                                  child: Image(
+                                                    image: AssetImage(
+                                                        "assets/images/homepage/table.png"),
+                                                    fit: BoxFit.cover,
+                                                  ),
+                                                  onTap: () {
+                                                    Navigator.push(
+                                                        context,
+                                                        MaterialPageRoute(
+                                                            builder: (context) =>
+                                                                TablePage()));
+                                                  },
+                                                )),
+                                            Padding(
+                                              padding:
+                                                  const EdgeInsets.fromLTRB(
+                                                      0, 0, 20, 0),
+                                              child: Container(
+                                                  width: 150,
+                                                  height: 30,
+                                                  decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.all(
+                                                            Radius.circular(
+                                                                30)),
+                                                    color: Color.fromARGB(
+                                                        255, 221, 163, 163),
+                                                  ),
+                                                  child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                    .fromLTRB(
+                                                                15, 0, 0, 0),
+                                                        child: Text(
+                                                          "Bàn 7",
+                                                          style: TextStyle(
+                                                              fontSize: 15),
+                                                        ),
+                                                      ),
+                                                      Icon(
+                                                        Icons.groups,
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                    .fromLTRB(
+                                                                0, 0, 15, 0),
+                                                        child: Container(
+                                                          width: 10,
+                                                          height: 10,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .all(Radius
+                                                                        .circular(
+                                                                            30)),
+                                                            color:
+                                                                Color.fromARGB(
+                                                                    255,
+                                                                    10,
+                                                                    255,
+                                                                    10),
+                                                          ),
+                                                        ),
+                                                      )
+                                                    ],
+                                                  )),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                      
+                                      // Bàn 8
+                                       Padding(
+                                        padding: const EdgeInsets.fromLTRB(
+                                            20, 20, 0, 20),
+                                        child: Column(
+                                          children: [
+                                            SizedBox(
+                                                width: 140,
+                                                child: GestureDetector(
+                                                  child: Image(
+                                                    image: AssetImage(
+                                                        "assets/images/homepage/table.png"),
+                                                    fit: BoxFit.cover,
+                                                  ),
+                                                  onTap: () {
+                                                    Navigator.push(
+                                                        context,
+                                                        MaterialPageRoute(
+                                                            builder: (context) =>
+                                                                TablePage()));
+                                                  },
+                                                )),
+                                            Padding(
+                                              padding:
+                                                  const EdgeInsets.fromLTRB(
+                                                      0, 0, 20, 0),
+                                              child: Container(
+                                                  width: 150,
+                                                  height: 30,
+                                                  decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.all(
+                                                            Radius.circular(
+                                                                30)),
+                                                    color: Color.fromARGB(
+                                                        255, 221, 163, 163),
+                                                  ),
+                                                  child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                    .fromLTRB(
+                                                                15, 0, 0, 0),
+                                                        child: Text(
+                                                          "Bàn 8",
+                                                          style: TextStyle(
+                                                              fontSize: 15),
+                                                        ),
+                                                      ),
+                                                      Icon(
+                                                        Icons.groups,
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                    .fromLTRB(
+                                                                0, 0, 15, 0),
+                                                        child: Container(
+                                                          width: 10,
+                                                          height: 10,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .all(Radius
+                                                                        .circular(
+                                                                            30)),
+                                                            color:
+                                                                Color.fromARGB(
+                                                                    255,
+                                                                    10,
+                                                                    255,
+                                                                    10),
+                                                          ),
+                                                        ),
+                                                      )
+                                                    ],
+                                                  )),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                      ],
                                   ),
                                 ],
                               )
