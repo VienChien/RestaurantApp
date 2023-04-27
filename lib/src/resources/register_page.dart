@@ -1,8 +1,13 @@
+import 'dart:convert';
+
 import 'package:flutter/gestures.dart';
 import 'package:flutter_application/src/bloc/auth_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application/src/resources/login_page.dart';
 import 'package:flutter_application/src/resources/home_page.dart';
+import 'package:http/http.dart' as http;
+import 'package:flutter_application/src/config.dart';
+
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -17,6 +22,28 @@ class _RegisterPageState extends State<RegisterPage> {
   TextEditingController _emailController = new TextEditingController();
   TextEditingController _passController = new TextEditingController();
   TextEditingController _phoneController = new TextEditingController();
+bool _isNotValidate = false;
+
+void registerUser() async{
+  if(_emailController.text.isNotEmpty && _passController.text.isNotEmpty && _nameController.text.isNotEmpty && _phoneController.text.isNotEmpty){
+    var regBody ={
+      "email": _emailController.text,
+      "password": _passController.text,
+      "name": _nameController.text,
+      "phonenumber":_phoneController.text,
+    };
+    var response = await http.post(Uri.parse(registration),
+    headers: {"Content-Type":"application/json"},
+    body: jsonEncode(regBody)
+    );
+
+  }else{
+    setState(() {
+      _isNotValidate =true;
+    });
+  }
+}
+
 
   var image_bg = AssetImage("assets/images/register.jpg");
 
@@ -180,6 +207,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   stream: authBloc.passStream,
                   builder: (context, snapshot) {
                     return TextField(
+                      controller: _passController,
                       style: TextStyle(fontSize: 18, color: Colors.black),
                       obscureText: true,
                       decoration: InputDecoration(
@@ -217,7 +245,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   width: 200,
                   height: 52,
                   child: ElevatedButton(
-                    onPressed: onSignUpClicked,
+                    onPressed: registerUser,
                     child: Text(
                       "Sign Up",
                       style: TextStyle(color: Colors.white, fontSize: 18),
