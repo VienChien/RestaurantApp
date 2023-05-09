@@ -8,7 +8,6 @@ import 'package:flutter_application/src/resources/home_page.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_application/src/config.dart';
 
-
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
 
@@ -22,28 +21,30 @@ class _RegisterPageState extends State<RegisterPage> {
   TextEditingController _emailController = new TextEditingController();
   TextEditingController _passController = new TextEditingController();
   TextEditingController _phoneController = new TextEditingController();
-bool _isNotValidate = false;
+  bool _isNotValidate = false;
 
-void registerUser() async{
-  if(_emailController.text.isNotEmpty && _passController.text.isNotEmpty && _nameController.text.isNotEmpty && _phoneController.text.isNotEmpty){
-    var regBody ={
-      "email": _emailController.text,
-      "password": _passController.text,
-      "name": _nameController.text,
-      "phonenumber":_phoneController.text,
-    };
-    var response = await http.post(Uri.parse(registration),
-    headers: {"Content-Type":"application/json"},
-    body: jsonEncode(regBody)
-    );
-
-  }else{
-    setState(() {
-      _isNotValidate =true;
-    });
+  void registerUser() async {
+    if (_emailController.text.isNotEmpty &&
+        _passController.text.isNotEmpty &&
+        _nameController.text.isNotEmpty &&
+        _phoneController.text.isNotEmpty) {
+      var regBody = {
+        "email": _emailController.text,
+        "password": _passController.text,
+        "name": _nameController.text,
+        "phonenumber": _phoneController.text,
+      };
+      var response = await http.post(Uri.parse(registration),
+          headers: {"Content-Type": "application/json"},
+          body: jsonEncode(regBody));
+      var jsonResponse = jsonDecode(response.body);
+      print(jsonResponse['status']);
+    } else {
+      setState(() {
+        _isNotValidate = true;
+      });
+    }
   }
-}
-
 
   var image_bg = AssetImage("assets/images/register.jpg");
 
@@ -288,20 +289,5 @@ void registerUser() async{
         ),
       ),
     );
-  }
-
-  onSignUpClicked() {
-    var isValid = authBloc.isValid(_nameController.text, _emailController.text,
-        _passController.text, _phoneController.text);
-    if (isValid) {
-      //create user
-      authBloc.signUp(_nameController.text, _emailController.text,
-          _passController.text, _phoneController.text, () {
-        setState(() {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => LoginPage()));
-        });
-      });
-    }
   }
 }

@@ -1,22 +1,63 @@
+import 'dart:convert' show jsonDecode, jsonEncode;
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
+import 'package:flutter_application/src/resources/dashboard.dart';
 import 'package:flutter_application/src/resources/register_page.dart';
 import 'package:flutter_application/src/resources/home_page.dart';
+import 'package:http/http.dart' as http;
+import 'package:flutter_application/src/config.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget {
   @override
   _LoginPageState createState() => _LoginPageState();
 }
 
-TextEditingController _emailController = new TextEditingController();
-TextEditingController _passController = new TextEditingController();
-var _userNameErr = "Tai Khoan Khong Hop Le";
-var _passErr = "Mat khau phai tren 6 ky tu";
-var _userInvalid = false;
-var _passInvalid = false;
-var image_bg = AssetImage("assets/images/background.png");
-
 class _LoginPageState extends State<LoginPage> {
+  TextEditingController _emailController = new TextEditingController();
+  TextEditingController _passController = new TextEditingController();
+  var _userNameErr = "Tai Khoan Khong Hop Le";
+  var _passErr = "Mat khau phai tren 6 ky tu";
+  var _userInvalid = false;
+  var _passInvalid = false;
+  var image_bg = AssetImage("assets/images/background.png");
+
+// bool _isNotValidate = false;
+  late SharedPreferences prefs;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    initSharedPref();
+  }
+
+  void initSharedPref() async {
+    prefs = await SharedPreferences.getInstance();
+  }
+
+  void loginUser() async {
+    if (_emailController.text.isNotEmpty && _passController.text.isNotEmpty) {
+      var reqBody = {
+        "email": _emailController.text,
+        "password": _passController.text,
+      };
+
+      var response = await http.post(Uri.parse(login),
+          headers: {"Content-Type": "application/json"},
+          body: jsonEncode(reqBody));
+
+      var jsonResponse = jsonDecode(response.body);
+      if (jsonResponse['status']) {
+        var myToken = jsonResponse['token'];
+        prefs.setString('token', myToken);
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => HomePage(token: myToken)));
+      } else {
+        print('Something went wrong');
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     precacheImage(image_bg, context);
@@ -41,6 +82,7 @@ class _LoginPageState extends State<LoginPage> {
                 child: TextField(
                   style: TextStyle(fontSize: 18, color: Colors.white),
                   controller: _emailController,
+                  keyboardType: TextInputType.text,
                   decoration: InputDecoration(
                     labelText: "Email",
                     labelStyle:
@@ -56,6 +98,7 @@ class _LoginPageState extends State<LoginPage> {
               TextField(
                 style: TextStyle(fontSize: 18, color: Colors.black),
                 controller: _passController,
+                keyboardType: TextInputType.text,
                 obscureText: true,
                 decoration: InputDecoration(
                     labelStyle:
@@ -85,7 +128,7 @@ class _LoginPageState extends State<LoginPage> {
                   width: 200,
                   height: 52,
                   child: ElevatedButton(
-                    onPressed: onSignInClicked,
+                    onPressed: loginUser,
                     child: Text(
                       "Sign In",
                       style: TextStyle(color: Colors.white, fontSize: 30),
@@ -158,27 +201,27 @@ class _LoginPageState extends State<LoginPage> {
   //   });
   // }
 
-  void onSignInClicked() {
-    setState(() {
-      if (_emailController.text.length < 6 ||
-          !_emailController.text.contains("@gmail.com")) {
-        _userInvalid = true;
-      } else {
-        _userInvalid = false;
-      }
-      ;
+  // void onSignInClicked() {
+  //   setState(() {
+  //     if (_emailController.text.length < 6 ||
+  //         !_emailController.text.contains("@gmail.com")) {
+  //       _userInvalid = true;
+  //     } else {
+  //       _userInvalid = false;
+  //     }
+  //     ;
 
-      if (_passController.text.length < 6) {
-        _passInvalid = true;
-      } else {
-        _passInvalid = false;
-      }
-      if (!_userInvalid && !_passInvalid) {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => HomePage()));
-        // Navigator.push(
-        //   context, MaterialPageRoute(builder: (context) => HomePage()));
-      }
-    });
-  }
+  //     if (_passController.text.length < 6) {
+  //       _passInvalid = true;
+  //     } else {
+  //       _passInvalid = false;
+  //     }
+  //     if (!_userInvalid && !_passInvalid) {
+  //       Navigator.push(
+  //           context, MaterialPageRoute(builder: (context) => HomePage()));
+  //       // Navigator.push(
+  //       //   context, MaterialPageRoute(builder: (context) => HomePage()));
+  //     }
+  //   });
+  // }
 }

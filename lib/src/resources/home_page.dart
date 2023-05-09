@@ -3,15 +3,28 @@ import 'package:flutter_application/src/resources/account/account_page.dart';
 import 'package:flutter_application/src/resources/history_page.dart';
 import 'package:flutter_application/src/resources/table_page/table_page.dart';
 import 'package:flutter_application/src/resources/voucher_page.dart';
+import 'package:jwt_decoder/jwt_decoder.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  final token;
+  const HomePage({super.key, @required this.token});
 
   @override
   _HomePageState createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
+  late String email;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    Map<String, dynamic> jwtDecodedToken = JwtDecoder.decode(widget.token);
+
+    email = jwtDecodedToken['email'];
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -50,35 +63,35 @@ class _HomePageState extends State<HomePage> {
                               style: TextStyle(fontSize: 23),
                             ),
                             Text(
-                              "  Trần Viên Chiến",
+                              email,
                               style: TextStyle(fontSize: 23),
                             ),
                             Text(
-                              "  0925321321",
+                              "0",
                               style: TextStyle(fontSize: 23),
                             ),
                           ],
                         ),
                       ),
                       Padding(
-                      padding: const EdgeInsets.fromLTRB(0, 0, 0, 40),
-                      child: Container(
-                        width: 100,
-                        height: 60,
-                        decoration: BoxDecoration(
-                          borderRadius: new BorderRadius.horizontal(
-                              left: Radius.circular(30)),
-                          color: Color.fromARGB(255, 243, 113, 113),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 10, 30, 10),
-                          child: CircleAvatar(
-                            backgroundImage:
-                                AssetImage("assets/images/avatar.jpg"),
+                        padding: const EdgeInsets.fromLTRB(0, 0, 0, 40),
+                        child: Container(
+                          width: 100,
+                          height: 60,
+                          decoration: BoxDecoration(
+                            borderRadius: new BorderRadius.horizontal(
+                                left: Radius.circular(30)),
+                            color: Color.fromARGB(255, 243, 113, 113),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.fromLTRB(0, 10, 30, 10),
+                            child: CircleAvatar(
+                              backgroundImage:
+                                  AssetImage("assets/images/avatar.jpg"),
+                            ),
                           ),
                         ),
                       ),
-                    ),
                     ],
                   ),
                   Padding(
@@ -87,9 +100,8 @@ class _HomePageState extends State<HomePage> {
                       width: double.infinity,
                       height: 950,
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.vertical(
-                          top: Radius.circular(30)
-                        ),
+                        borderRadius:
+                            BorderRadius.vertical(top: Radius.circular(30)),
                         color: Color.fromARGB(255, 247, 242, 236),
                       ),
                       child: Padding(
@@ -225,9 +237,9 @@ class _HomePageState extends State<HomePage> {
                                           ],
                                         ),
                                       ),
-                                      
+
                                       // Bàn 2
-                                        Padding(
+                                      Padding(
                                         padding: const EdgeInsets.fromLTRB(
                                             20, 20, 0, 20),
                                         child: Column(
@@ -312,7 +324,6 @@ class _HomePageState extends State<HomePage> {
                                           ],
                                         ),
                                       ),
-                                      
                                     ],
                                   ),
                                   Row(
@@ -320,7 +331,7 @@ class _HomePageState extends State<HomePage> {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       // Bàn 3
-                                       Padding(
+                                      Padding(
                                         padding: const EdgeInsets.fromLTRB(
                                             20, 20, 0, 20),
                                         child: Column(
@@ -405,9 +416,9 @@ class _HomePageState extends State<HomePage> {
                                           ],
                                         ),
                                       ),
-                                      
+
                                       // Bàn 4
-                                       Padding(
+                                      Padding(
                                         padding: const EdgeInsets.fromLTRB(
                                             20, 20, 0, 20),
                                         child: Column(
@@ -492,14 +503,14 @@ class _HomePageState extends State<HomePage> {
                                           ],
                                         ),
                                       ),
-                                      ],
+                                    ],
                                   ),
                                   Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       // Bàn 5
-                                       Padding(
+                                      Padding(
                                         padding: const EdgeInsets.fromLTRB(
                                             20, 20, 0, 20),
                                         child: Column(
@@ -584,9 +595,9 @@ class _HomePageState extends State<HomePage> {
                                           ],
                                         ),
                                       ),
-                                      
+
                                       // Bàn 6
-                                       Padding(
+                                      Padding(
                                         padding: const EdgeInsets.fromLTRB(
                                             20, 20, 0, 20),
                                         child: Column(
@@ -671,14 +682,14 @@ class _HomePageState extends State<HomePage> {
                                           ],
                                         ),
                                       ),
-                                      ],
+                                    ],
                                   ),
                                   Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       // Bàn 7
-                                       Padding(
+                                      Padding(
                                         padding: const EdgeInsets.fromLTRB(
                                             20, 20, 0, 20),
                                         child: Column(
@@ -763,9 +774,9 @@ class _HomePageState extends State<HomePage> {
                                           ],
                                         ),
                                       ),
-                                      
+
                                       // Bàn 8
-                                       Padding(
+                                      Padding(
                                         padding: const EdgeInsets.fromLTRB(
                                             20, 20, 0, 20),
                                         child: Column(
@@ -850,7 +861,7 @@ class _HomePageState extends State<HomePage> {
                                           ],
                                         ),
                                       ),
-                                      ],
+                                    ],
                                   ),
                                 ],
                               )
