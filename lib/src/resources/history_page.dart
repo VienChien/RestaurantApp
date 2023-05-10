@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_application/src/resources/account/account_page.dart';
-import 'package:flutter_application/src/resources/home_page.dart';
+import 'package:flutter_application/src/resources/home_page/home_page.dart';
 import 'package:flutter_application/src/resources/voucher_page.dart';
 
 class History extends StatefulWidget {

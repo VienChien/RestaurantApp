@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application/src/resources/home_page.dart';
+import 'package:flutter_application/src/resources/home_page/home_page.dart';
 
 class Acc_manager extends StatefulWidget {
   const Acc_manager({super.key});

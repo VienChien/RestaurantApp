@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_application/src/resources/home_page.dart';
+import 'package:flutter_application/src/resources/home_page/home_page.dart';
 import 'package:flutter_application/src/resources/table_page/confirm_table.dart';
 
 class TablePage extends StatefulWidget {

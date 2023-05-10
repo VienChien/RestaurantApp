@@ -3,8 +3,8 @@ import 'package:flutter_application/src/resources/account/manager/acc_manager.da
 import 'package:flutter_application/src/resources/account/password/pass_manager.dart';
 import 'package:flutter_application/src/resources/account/support.dart';
 import 'package:flutter_application/src/resources/history_page.dart';
-import 'package:flutter_application/src/resources/home_page.dart';
-import 'package:flutter_application/src/resources/login_page.dart';
+import 'package:flutter_application/src/resources/home_page/home_page.dart';
+import 'package:flutter_application/src/resources/login_page/login_page.dart';
 import 'package:flutter_application/src/resources/voucher_page.dart';
 
 class Account_Page extends StatefulWidget {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application/src/resources/table_page/table_page.dart';
 
-import '../home_page.dart';
+import '../home_page/home_page.dart';
 
 class ConfirmTable extends StatefulWidget {
   const ConfirmTable({super.key});

@@ -3,7 +3,7 @@ import 'package:flutter_application/src/resources/account/account_page.dart';
 import 'package:flutter_application/src/resources/history_page.dart';
 import 'package:flutter_application/src/resources/table_page/table_page.dart';
 
-import 'home_page.dart';
+import 'home_page/home_page.dart';
 
 class Voucher extends StatefulWidget {
   const Voucher({super.key});
