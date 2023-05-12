@@ -1,4 +1,0 @@
-#Wed May 10 22:27:48 ICT 2023
-base.0=F\:\\Hoc\\DemoFlutter\\flutter\\Restaurant_app\\RestaurantApp\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
-renamed.0=classes.dex
-path.0=classes.dex

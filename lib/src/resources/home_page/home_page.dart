@@ -1,10 +1,8 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_application/src/resources/account/account_page.dart';
-import 'package:flutter_application/src/resources/history_page.dart';
-import 'package:flutter_application/src/resources/home_page/model/table.dart';
+import 'package:flutter_application/src/resources/bottombar.dart';
 import 'package:flutter_application/src/resources/table_page/table_page.dart';
-import 'package:flutter_application/src/resources/voucher_page.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert' show jsonDecode, jsonEncode;
@@ -18,29 +16,34 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
-Future<Test> fetchTest() async {
-  final response = await http
-      .get(Uri.parse('https://jsonplaceholder.typicode.com/albums/1'));
-
-  if (response.statusCode == 200) {
-    return Test.fromJson(jsonDecode(response.body));
-  } else {
-    throw Exception('Failed to load Test');
-  }
-}
-
 class _HomePageState extends State<HomePage> {
-  late String email, userId;
-  List? items;
-  late Future<Test> futureTest;
+  late String email;
+  // late String name;
+  // late Int phone;
+  List? data;
+  Future<String> getData() async {
+    var response = await http
+        .get(Uri.parse(getTable), headers: {"Accept": "application/json"});
+
+    setState(() {
+      data = jsonDecode(response.body);
+    });
+
+    print(data![1]["title"]);
+
+    return "Success!";
+  }
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     Map<String, dynamic> jwtDecodedToken = JwtDecoder.decode(widget.token);
-    futureTest = fetchTest();
     email = jwtDecodedToken['email'];
+    // name = jwtDecodedToken['name'];
+    // phone = jwtDecodedToken['phonenumber'];
+
+    this.getData();
   }
 
   @override
@@ -91,20 +94,6 @@ class _HomePageState extends State<HomePage> {
                           ],
                         ),
                       ),
-                      Center(
-                        child: FutureBuilder<Test>(
-                          future: futureTest,
-                          builder: (context, snapshot) {
-                            if (snapshot.hasData) {
-                              return Text(snapshot.data!.title);
-                            } else if (snapshot.hasError) {
-                              return Text('${snapshot.error}');
-                            }
-
-                            return const CircularProgressIndicator();
-                          },
-                        ),
-                      ),
                       Padding(
                         padding: const EdgeInsets.fromLTRB(0, 0, 0, 40),
                         child: Container(
@@ -126,11 +115,22 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ],
                   ),
+                  // SizedBox(
+                  //   height: 1000,
+                  //   child: new ListView.builder(
+                  //     itemCount: data == null ? 0 : data?.length,
+                  //     itemBuilder: (BuildContext context, int index) {
+                  //       return new Card(
+                  //         child: new Text(data![index]["title"]),
+                  //       );
+                  //     },
+                  //   ),
+                  // ),
                   Padding(
                     padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                     child: Container(
                       width: double.infinity,
-                      height: 950,
+                      height: 700,
                       decoration: BoxDecoration(
                         borderRadius:
                             BorderRadius.vertical(top: Radius.circular(30)),
@@ -176,727 +176,107 @@ class _HomePageState extends State<HomePage> {
                                   ),
                                 ),
                               ),
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      // Bàn 1
-                                      Padding(
-                                        padding: const EdgeInsets.fromLTRB(
-                                            20, 20, 0, 20),
-                                        child: Column(
-                                          children: [
-                                            SizedBox(
-                                                width: 140,
-                                                child: GestureDetector(
-                                                  child: Image(
-                                                    image: AssetImage(
-                                                        "assets/images/homepage/table.png"),
-                                                    fit: BoxFit.cover,
-                                                  ),
-                                                  onTap: () {
-                                                    Navigator.push(
-                                                        context,
-                                                        MaterialPageRoute(
-                                                            builder: (context) =>
-                                                                TablePage()));
-                                                  },
-                                                )),
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.fromLTRB(
-                                                      0, 0, 20, 0),
-                                              child: Container(
-                                                  width: 150,
-                                                  height: 30,
-                                                  decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.all(
-                                                            Radius.circular(
-                                                                30)),
-                                                    color: Color.fromARGB(
-                                                        255, 221, 163, 163),
-                                                  ),
-                                                  child: Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                    .fromLTRB(
-                                                                15, 0, 0, 0),
-                                                        child: Text(
-                                                          "Bàn 1",
-                                                          style: TextStyle(
-                                                              fontSize: 15),
-                                                        ),
-                                                      ),
-                                                      Icon(
-                                                        Icons.groups,
-                                                      ),
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                    .fromLTRB(
-                                                                0, 0, 15, 0),
-                                                        child: Container(
-                                                          width: 10,
-                                                          height: 10,
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .all(Radius
-                                                                        .circular(
-                                                                            30)),
-                                                            color:
-                                                                Color.fromARGB(
-                                                                    255,
-                                                                    10,
-                                                                    255,
-                                                                    10),
-                                                          ),
-                                                        ),
-                                                      )
-                                                    ],
-                                                  )),
-                                            )
-                                          ],
-                                        ),
-                                      ),
-
-                                      // Bàn 2
-                                      Padding(
-                                        padding: const EdgeInsets.fromLTRB(
-                                            20, 20, 0, 20),
-                                        child: Column(
-                                          children: [
-                                            SizedBox(
-                                                width: 140,
-                                                child: GestureDetector(
-                                                  child: Image(
-                                                    image: AssetImage(
-                                                        "assets/images/homepage/table.png"),
-                                                    fit: BoxFit.cover,
-                                                  ),
-                                                  onTap: () {
-                                                    Navigator.push(
-                                                        context,
-                                                        MaterialPageRoute(
-                                                            builder: (context) =>
-                                                                TablePage()));
-                                                  },
-                                                )),
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.fromLTRB(
-                                                      0, 0, 20, 0),
-                                              child: Container(
-                                                  width: 150,
-                                                  height: 30,
-                                                  decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.all(
-                                                            Radius.circular(
-                                                                30)),
-                                                    color: Color.fromARGB(
-                                                        255, 221, 163, 163),
-                                                  ),
-                                                  child: Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                    .fromLTRB(
-                                                                15, 0, 0, 0),
-                                                        child: Text(
-                                                          "Bàn 2",
-                                                          style: TextStyle(
-                                                              fontSize: 15),
-                                                        ),
-                                                      ),
-                                                      Icon(
-                                                        Icons.groups,
-                                                      ),
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                    .fromLTRB(
-                                                                0, 0, 15, 0),
-                                                        child: Container(
-                                                          width: 10,
-                                                          height: 10,
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .all(Radius
-                                                                        .circular(
-                                                                            30)),
-                                                            color:
-                                                                Color.fromARGB(
-                                                                    255,
-                                                                    10,
-                                                                    255,
-                                                                    10),
-                                                          ),
-                                                        ),
-                                                      )
-                                                    ],
-                                                  )),
-                                            )
-                                          ],
-                                        ),
-                                      ),
-                                    ],
+                              SizedBox(
+                                height: 600,
+                                child: GridView.builder(
+                                  gridDelegate:
+                                      const SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount: 2,
                                   ),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      // Bàn 3
-                                      Padding(
-                                        padding: const EdgeInsets.fromLTRB(
-                                            20, 20, 0, 20),
-                                        child: Column(
-                                          children: [
-                                            SizedBox(
-                                                width: 140,
-                                                child: GestureDetector(
-                                                  child: Image(
-                                                    image: AssetImage(
-                                                        "assets/images/homepage/table.png"),
-                                                    fit: BoxFit.cover,
-                                                  ),
-                                                  onTap: () {
-                                                    Navigator.push(
-                                                        context,
-                                                        MaterialPageRoute(
-                                                            builder: (context) =>
-                                                                TablePage()));
-                                                  },
-                                                )),
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.fromLTRB(
-                                                      0, 0, 20, 0),
-                                              child: Container(
-                                                  width: 150,
-                                                  height: 30,
-                                                  decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.all(
-                                                            Radius.circular(
-                                                                30)),
-                                                    color: Color.fromARGB(
-                                                        255, 221, 163, 163),
-                                                  ),
-                                                  child: Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                    .fromLTRB(
-                                                                15, 0, 0, 0),
-                                                        child: Text(
-                                                          "Bàn 3",
-                                                          style: TextStyle(
-                                                              fontSize: 15),
-                                                        ),
-                                                      ),
-                                                      Icon(
-                                                        Icons.groups,
-                                                      ),
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                    .fromLTRB(
-                                                                0, 0, 15, 0),
-                                                        child: Container(
-                                                          width: 10,
-                                                          height: 10,
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .all(Radius
-                                                                        .circular(
-                                                                            30)),
-                                                            color:
-                                                                Color.fromARGB(
-                                                                    255,
-                                                                    10,
-                                                                    255,
-                                                                    10),
-                                                          ),
-                                                        ),
-                                                      )
-                                                    ],
-                                                  )),
-                                            )
-                                          ],
-                                        ),
-                                      ),
+                                  itemCount: data == null ? 0 : data?.length,
+                                  itemBuilder:
+                                      (BuildContext context, int index) {
+                                    // return new Card(
+                                    //   child: new Text(data![index]["title"]),
+                                    // );
+                                    status() {
+                                      if (data![index]['status'] == false) {
+                                        return Color.fromARGB(255, 10, 255, 10);
+                                      }
+                                      return Color.fromARGB(255, 252, 2, 2);
+                                    }
 
-                                      // Bàn 4
-                                      Padding(
-                                        padding: const EdgeInsets.fromLTRB(
-                                            20, 20, 0, 20),
-                                        child: Column(
-                                          children: [
-                                            SizedBox(
-                                                width: 140,
-                                                child: GestureDetector(
-                                                  child: Image(
-                                                    image: AssetImage(
-                                                        "assets/images/homepage/table.png"),
-                                                    fit: BoxFit.cover,
-                                                  ),
-                                                  onTap: () {
-                                                    Navigator.push(
-                                                        context,
-                                                        MaterialPageRoute(
-                                                            builder: (context) =>
-                                                                TablePage()));
-                                                  },
+                                    return new Padding(
+                                      padding: const EdgeInsets.fromLTRB(
+                                          20, 0, 0, 0),
+                                      child: Column(
+                                        children: [
+                                          SizedBox(
+                                              width: 160,
+                                              child: GestureDetector(
+                                                child: Image(
+                                                  image: AssetImage(
+                                                      "assets/images/homepage/table.png"),
+                                                  fit: BoxFit.cover,
+                                                ),
+                                                onTap: () {
+                                                  Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              TablePage()));
+                                                },
+                                              )),
+                                          Padding(
+                                            padding: const EdgeInsets.fromLTRB(
+                                                0, 0, 20, 0),
+                                            child: Container(
+                                                width: 150,
+                                                height: 30,
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.all(
+                                                          Radius.circular(30)),
+                                                  color: Color.fromARGB(
+                                                      255, 221, 163, 163),
+                                                ),
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Padding(
+                                                      padding: const EdgeInsets
+                                                              .fromLTRB(
+                                                          15, 0, 0, 0),
+                                                      child: Text(
+                                                        data![index]["title"],
+                                                        style: TextStyle(
+                                                            fontSize: 15),
+                                                      ),
+                                                    ),
+                                                    Icon(
+                                                      Icons.groups,
+                                                    ),
+                                                    Padding(
+                                                      padding: const EdgeInsets
+                                                              .fromLTRB(
+                                                          0, 0, 15, 0),
+                                                      child: Container(
+                                                        width: 10,
+                                                        height: 10,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          borderRadius:
+                                                              BorderRadius.all(
+                                                                  Radius
+                                                                      .circular(
+                                                                          30)),
+                                                          // color: Color.fromARGB(
+                                                          //     255, 10, 255, 10),
+                                                          color: status(),
+                                                        ),
+                                                      ),
+                                                    )
+                                                  ],
                                                 )),
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.fromLTRB(
-                                                      0, 0, 20, 0),
-                                              child: Container(
-                                                  width: 150,
-                                                  height: 30,
-                                                  decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.all(
-                                                            Radius.circular(
-                                                                30)),
-                                                    color: Color.fromARGB(
-                                                        255, 221, 163, 163),
-                                                  ),
-                                                  child: Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                    .fromLTRB(
-                                                                15, 0, 0, 0),
-                                                        child: Text(
-                                                          "Bàn 4",
-                                                          style: TextStyle(
-                                                              fontSize: 15),
-                                                        ),
-                                                      ),
-                                                      Icon(
-                                                        Icons.groups,
-                                                      ),
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                    .fromLTRB(
-                                                                0, 0, 15, 0),
-                                                        child: Container(
-                                                          width: 10,
-                                                          height: 10,
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .all(Radius
-                                                                        .circular(
-                                                                            30)),
-                                                            color:
-                                                                Color.fromARGB(
-                                                                    255,
-                                                                    10,
-                                                                    255,
-                                                                    10),
-                                                          ),
-                                                        ),
-                                                      )
-                                                    ],
-                                                  )),
-                                            )
-                                          ],
-                                        ),
+                                          )
+                                        ],
                                       ),
-                                    ],
-                                  ),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      // Bàn 5
-                                      Padding(
-                                        padding: const EdgeInsets.fromLTRB(
-                                            20, 20, 0, 20),
-                                        child: Column(
-                                          children: [
-                                            SizedBox(
-                                                width: 140,
-                                                child: GestureDetector(
-                                                  child: Image(
-                                                    image: AssetImage(
-                                                        "assets/images/homepage/table.png"),
-                                                    fit: BoxFit.cover,
-                                                  ),
-                                                  onTap: () {
-                                                    Navigator.push(
-                                                        context,
-                                                        MaterialPageRoute(
-                                                            builder: (context) =>
-                                                                TablePage()));
-                                                  },
-                                                )),
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.fromLTRB(
-                                                      0, 0, 20, 0),
-                                              child: Container(
-                                                  width: 150,
-                                                  height: 30,
-                                                  decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.all(
-                                                            Radius.circular(
-                                                                30)),
-                                                    color: Color.fromARGB(
-                                                        255, 221, 163, 163),
-                                                  ),
-                                                  child: Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                    .fromLTRB(
-                                                                15, 0, 0, 0),
-                                                        child: Text(
-                                                          "Bàn 5",
-                                                          style: TextStyle(
-                                                              fontSize: 15),
-                                                        ),
-                                                      ),
-                                                      Icon(
-                                                        Icons.groups,
-                                                      ),
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                    .fromLTRB(
-                                                                0, 0, 15, 0),
-                                                        child: Container(
-                                                          width: 10,
-                                                          height: 10,
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .all(Radius
-                                                                        .circular(
-                                                                            30)),
-                                                            color:
-                                                                Color.fromARGB(
-                                                                    255,
-                                                                    10,
-                                                                    255,
-                                                                    10),
-                                                          ),
-                                                        ),
-                                                      )
-                                                    ],
-                                                  )),
-                                            )
-                                          ],
-                                        ),
-                                      ),
-
-                                      // Bàn 6
-                                      Padding(
-                                        padding: const EdgeInsets.fromLTRB(
-                                            20, 20, 0, 20),
-                                        child: Column(
-                                          children: [
-                                            SizedBox(
-                                                width: 140,
-                                                child: GestureDetector(
-                                                  child: Image(
-                                                    image: AssetImage(
-                                                        "assets/images/homepage/table.png"),
-                                                    fit: BoxFit.cover,
-                                                  ),
-                                                  onTap: () {
-                                                    Navigator.push(
-                                                        context,
-                                                        MaterialPageRoute(
-                                                            builder: (context) =>
-                                                                TablePage()));
-                                                  },
-                                                )),
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.fromLTRB(
-                                                      0, 0, 20, 0),
-                                              child: Container(
-                                                  width: 150,
-                                                  height: 30,
-                                                  decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.all(
-                                                            Radius.circular(
-                                                                30)),
-                                                    color: Color.fromARGB(
-                                                        255, 221, 163, 163),
-                                                  ),
-                                                  child: Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                    .fromLTRB(
-                                                                15, 0, 0, 0),
-                                                        child: Text(
-                                                          "Bàn 6",
-                                                          style: TextStyle(
-                                                              fontSize: 15),
-                                                        ),
-                                                      ),
-                                                      Icon(
-                                                        Icons.groups,
-                                                      ),
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                    .fromLTRB(
-                                                                0, 0, 15, 0),
-                                                        child: Container(
-                                                          width: 10,
-                                                          height: 10,
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .all(Radius
-                                                                        .circular(
-                                                                            30)),
-                                                            color:
-                                                                Color.fromARGB(
-                                                                    255,
-                                                                    10,
-                                                                    255,
-                                                                    10),
-                                                          ),
-                                                        ),
-                                                      )
-                                                    ],
-                                                  )),
-                                            )
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      // Bàn 7
-                                      Padding(
-                                        padding: const EdgeInsets.fromLTRB(
-                                            20, 20, 0, 20),
-                                        child: Column(
-                                          children: [
-                                            SizedBox(
-                                                width: 140,
-                                                child: GestureDetector(
-                                                  child: Image(
-                                                    image: AssetImage(
-                                                        "assets/images/homepage/table.png"),
-                                                    fit: BoxFit.cover,
-                                                  ),
-                                                  onTap: () {
-                                                    Navigator.push(
-                                                        context,
-                                                        MaterialPageRoute(
-                                                            builder: (context) =>
-                                                                TablePage()));
-                                                  },
-                                                )),
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.fromLTRB(
-                                                      0, 0, 20, 0),
-                                              child: Container(
-                                                  width: 150,
-                                                  height: 30,
-                                                  decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.all(
-                                                            Radius.circular(
-                                                                30)),
-                                                    color: Color.fromARGB(
-                                                        255, 221, 163, 163),
-                                                  ),
-                                                  child: Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                    .fromLTRB(
-                                                                15, 0, 0, 0),
-                                                        child: Text(
-                                                          "Bàn 7",
-                                                          style: TextStyle(
-                                                              fontSize: 15),
-                                                        ),
-                                                      ),
-                                                      Icon(
-                                                        Icons.groups,
-                                                      ),
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                    .fromLTRB(
-                                                                0, 0, 15, 0),
-                                                        child: Container(
-                                                          width: 10,
-                                                          height: 10,
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .all(Radius
-                                                                        .circular(
-                                                                            30)),
-                                                            color:
-                                                                Color.fromARGB(
-                                                                    255,
-                                                                    10,
-                                                                    255,
-                                                                    10),
-                                                          ),
-                                                        ),
-                                                      )
-                                                    ],
-                                                  )),
-                                            )
-                                          ],
-                                        ),
-                                      ),
-
-                                      // Bàn 8
-                                      Padding(
-                                        padding: const EdgeInsets.fromLTRB(
-                                            20, 20, 0, 20),
-                                        child: Column(
-                                          children: [
-                                            SizedBox(
-                                                width: 140,
-                                                child: GestureDetector(
-                                                  child: Image(
-                                                    image: AssetImage(
-                                                        "assets/images/homepage/table.png"),
-                                                    fit: BoxFit.cover,
-                                                  ),
-                                                  onTap: () {
-                                                    Navigator.push(
-                                                        context,
-                                                        MaterialPageRoute(
-                                                            builder: (context) =>
-                                                                TablePage()));
-                                                  },
-                                                )),
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.fromLTRB(
-                                                      0, 0, 20, 0),
-                                              child: Container(
-                                                  width: 150,
-                                                  height: 30,
-                                                  decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.all(
-                                                            Radius.circular(
-                                                                30)),
-                                                    color: Color.fromARGB(
-                                                        255, 221, 163, 163),
-                                                  ),
-                                                  child: Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                    .fromLTRB(
-                                                                15, 0, 0, 0),
-                                                        child: Text(
-                                                          "Bàn 8",
-                                                          style: TextStyle(
-                                                              fontSize: 15),
-                                                        ),
-                                                      ),
-                                                      Icon(
-                                                        Icons.groups,
-                                                      ),
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                    .fromLTRB(
-                                                                0, 0, 15, 0),
-                                                        child: Container(
-                                                          width: 10,
-                                                          height: 10,
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .all(Radius
-                                                                        .circular(
-                                                                            30)),
-                                                            color:
-                                                                Color.fromARGB(
-                                                                    255,
-                                                                    10,
-                                                                    255,
-                                                                    10),
-                                                          ),
-                                                        ),
-                                                      )
-                                                    ],
-                                                  )),
-                                            )
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              )
+                                    );
+                                  },
+                                ),
+                              ),
                             ],
                           )),
                     ),
@@ -905,102 +285,8 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
           ),
-          bottomNavigationBar: BottomAppBar(
-              height: 50,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  SizedBox(
-                    width: 50,
-                    height: 50,
-                    child: IconButton(
-                      alignment: Alignment.center,
-                      padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                      iconSize: 55,
-                      icon: const Icon(
-                        Icons.home,
-                        color: Color.fromARGB(255, 129, 38, 38),
-                      ),
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => HomePage()));
-                      },
-                    ),
-                  ),
-                  SizedBox(
-                    width: 50,
-                    height: 50,
-                    child: IconButton(
-                      alignment: Alignment.center,
-                      padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                      iconSize: 55,
-                      icon: const Icon(
-                        Icons.restaurant_menu_rounded,
-                        color: Color.fromARGB(255, 129, 38, 38),
-                      ),
-                      onPressed: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => History()));
-                      },
-                    ),
-                  ),
-                  SizedBox(
-                    width: 50,
-                    height: 50,
-                    child: IconButton(
-                      alignment: Alignment.center,
-                      padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                      iconSize: 55,
-                      icon: const Icon(
-                        Icons.card_giftcard,
-                        color: Color.fromARGB(255, 129, 38, 38),
-                      ),
-                      onPressed: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => Voucher()));
-                      },
-                    ),
-                  ),
-                  SizedBox(
-                    width: 50,
-                    height: 50,
-                    child: IconButton(
-                      alignment: Alignment.center,
-                      padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                      iconSize: 55,
-                      icon: const Icon(
-                        Icons.person,
-                        color: Color.fromARGB(255, 129, 38, 38),
-                      ),
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => Account_Page()));
-                      },
-                    ),
-                  ),
-                ],
-              ))),
+          bottomNavigationBar:
+              BottomAppBar(height: 50, child: BottombarRestaurant(context))),
     );
   }
 }
-
-// class _HomePageState extends State<HomePage> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       body: Container(
-//         decoration: BoxDecoration(
-//           image: DecorationImage(
-//             image: AssetImage("assets/loading.jpg"),
-//             fit: BoxFit.cover,
-//           ),
-//         ),
-//         child: null /* add child content here */,
-//       ),
-//     );
-//   }
-// }
